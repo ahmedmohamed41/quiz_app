@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:rolldice_app/home.dart';
 import 'package:rolldice_app/questions.dart';
 
-class Quiz extends StatefulWidget {
-  const Quiz({super.key});
+class QuizScreen extends StatefulWidget {
+  const QuizScreen({super.key});
 
   @override
-  State<Quiz> createState() => _QuizState();
+  State<QuizScreen> createState() => _QuizScreenState();
 }
 
-class _QuizState extends State<Quiz> {
+class _QuizScreenState extends State<QuizScreen> {
   Widget? activeScreen;
 
   @override
@@ -27,7 +27,6 @@ class _QuizState extends State<Quiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(

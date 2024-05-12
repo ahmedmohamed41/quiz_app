@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rolldice_app/widgets/answer_widget.dart';
+import 'package:rolldice_app/quiz.dart';
+import 'package:rolldice_app/widgets/compare_result_widget.dart';
 
 class ResultWidget extends StatelessWidget {
   const ResultWidget({
@@ -18,9 +19,6 @@ class ResultWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 40,
-          ),
           const Text(
             'Result Screen',
             style: TextStyle(
@@ -34,29 +32,50 @@ class ResultWidget extends StatelessWidget {
           ),
           Row(
             children: [
-              Column(
-                children: [
-                  Text(
-                    'Your Answers are :',
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.playfairDisplay(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+              Expanded(
+                child: Text(
+                  'Your Answers are',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.playfairDisplay(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
                   ),
-                  ...answerList.map(
-                    (e) {
-                      return AnswerWidget(
-                        text: e,
-                        onPressed: () {},
-                      );
-                    },
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  'Correct Answers are',
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.playfairDisplay(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
                   ),
-                 
-                ],
-              )
+                ),
+              ),
             ],
+          ),
+          CompareResultWidget(answerList: answerList),
+          const SizedBox(
+            height: 40,
+          ),
+          OutlinedButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const QuizScreen(),
+                ),
+                (route) => false,
+              );
+            },
+            child: const Text(
+              'Restart Quiz!',
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),

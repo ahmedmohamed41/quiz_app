@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          child: const Quiz(),
+          child: const QuizScreen(),
         ),
       ),
     );

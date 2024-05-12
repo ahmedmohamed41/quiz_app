@@ -1,7 +1,6 @@
 import '../models/quiz_model.dart';
 
 List<QuizModel> question = [
-  
   QuizModel(
     'What are the main building blocks of Flutter UIs?',
     [
@@ -56,4 +55,13 @@ List<QuizModel> question = [
       'By calling updateState()',
     ],
   ),
+];
+
+List<String> answerListCorrect = [
+  'Widgets',
+  'By combining widgets in code',
+  'Update UI as data changes',
+  'StatelessWidget',
+  'The UI is not updated',
+  'By calling setState()',
 ];
