@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rolldice_app/quiz.dart';
+import 'package:rolldice_app/screens/quiz.dart';
 
 void main(List<String> args) {
   runApp(const MyApp());

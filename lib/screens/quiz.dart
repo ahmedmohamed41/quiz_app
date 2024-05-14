@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rolldice_app/home.dart';
-import 'package:rolldice_app/questions.dart';
+import 'package:rolldice_app/screens/home.dart';
+import 'package:rolldice_app/screens/questions.dart';
 
 class QuizScreen extends StatefulWidget {
   const QuizScreen({super.key});
@@ -14,7 +14,7 @@ class _QuizScreenState extends State<QuizScreen> {
 
   @override
   void initState() {
-    activeScreen = Home(switchScreen);
+    activeScreen = HomeScreen(switchScreen);
     super.initState();
   }
 

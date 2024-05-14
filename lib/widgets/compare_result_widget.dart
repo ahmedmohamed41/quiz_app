@@ -1,7 +1,5 @@
-
 import 'package:flutter/material.dart';
-import 'package:rolldice_app/data/question._data.dart';
-import 'package:rolldice_app/widgets/answer_widget.dart';
+import 'package:rolldice_app/widgets/result_widget_finish.dart';
 
 class CompareResultWidget extends StatelessWidget {
   const CompareResultWidget({
@@ -13,45 +11,16 @@ class CompareResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: SizedBox(
-            width: 20,
-            child: Column(
-              children: [
-                ...answerList.map(
-                  (e) {
-                    return AnswerWidget(
-                      text: e,
-                      onPressed: () {},
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-        Container(
-          width: 5,
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              ...answerListCorrect.map(
-                (e) {
-                  return AnswerWidget(
-                    color: Colors.blueAccent,
-                    text: e,
-                    onPressed: () {},
-                  );
-                },
-              ),
-            ],
-          ),
-        )
-      ],
+    return ListView.separated(
+      shrinkWrap: true,
+      itemBuilder: (context, index) => ResultWidgetFinished(
+        answerList: answerList,
+        index: index,
+      ),
+      separatorBuilder: (context, index) => const SizedBox(
+        height: 3,
+      ),
+      itemCount: answerList.length,
     );
   }
 }
-

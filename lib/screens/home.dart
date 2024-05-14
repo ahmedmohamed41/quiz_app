@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
-  const Home(this.switchScreen, {super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen(this.switchScreen, {super.key});
   final Function() switchScreen;
   @override
   Widget build(BuildContext context) {

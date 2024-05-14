@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:rolldice_app/quiz.dart';
+import 'package:rolldice_app/data/question._data.dart';
+import 'package:rolldice_app/screens/quiz.dart';
 import 'package:rolldice_app/widgets/compare_result_widget.dart';
 
+int x = 0;
 class ResultWidget extends StatelessWidget {
-  const ResultWidget({
-    super.key,
-    required this.answerList,
-  });
-
+  const ResultWidget({super.key, required this.answerList});
   final List<String> answerList;
+
+  int get _checkCorrectAnswer {
+    for (int i = 0; i < answerList.length; i++) {
+      if (answerList[i] == answerListCorrect[i]) {
+        x++;
+      }
+    }
+    return x;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,35 +25,24 @@ class ResultWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Result Screen',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 30,
-            ),
-            textAlign: TextAlign.start,
-          ),
           const SizedBox(
             height: 40,
           ),
+          // const Text(
+          //   'Result Screen',
+          //   style: TextStyle(
+          //     color: Colors.white,
+          //     fontSize: 30,
+          //   ),
+          //   textAlign: TextAlign.start,
+          // ),
           Row(
             children: [
               Expanded(
                 child: Text(
-                  'Your Answers are',
+                  'You Answered $_checkCorrectAnswer out of 6 question correctly!',
                   textAlign: TextAlign.center,
-                  style: GoogleFonts.playfairDisplay(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  'Correct Answers are',
-                  textAlign: TextAlign.center,
-                  style: GoogleFonts.playfairDisplay(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 15,
@@ -56,29 +51,51 @@ class ResultWidget extends StatelessWidget {
               ),
             ],
           ),
-          CompareResultWidget(answerList: answerList),
+          Expanded(child: CompareResultWidget(answerList: answerList)),
           const SizedBox(
             height: 40,
           ),
-          OutlinedButton(
-            onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const QuizScreen(),
-                ),
-                (route) => false,
-              );
-            },
-            child: const Text(
-              'Restart Quiz!',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
+          const RestartWidget(),
+          const SizedBox(height: 40),
         ],
       ),
     );
   }
+
+
 }
+
+class RestartWidget extends StatelessWidget {
+  const RestartWidget({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      icon: const Icon(
+        Icons.replay_circle_filled,
+        color: Colors.white,
+      ),
+      onPressed: () {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              x = 0;
+              return const QuizScreen();
+            },
+          ),
+          (route) => false,
+        );
+      },
+      label: const Text(
+        'Restart Quiz!',
+        style: TextStyle(
+          color: Colors.white,
+        ),
+      ),
+    );
+  }
+}
+

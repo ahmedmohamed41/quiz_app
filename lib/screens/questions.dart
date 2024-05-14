@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rolldice_app/data/question._data.dart';
-import 'package:rolldice_app/result_screen.dart';
 import 'package:rolldice_app/models/quiz_model.dart';
+import 'package:rolldice_app/screens/result_screen.dart';
 import 'package:rolldice_app/widgets/answer_widget.dart';
 
 class Questions extends StatefulWidget {
